@@ -1,12 +1,12 @@
-.main {
+/* .main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
-}
-
+} */
+/* 
 .description {
   display: inherit;
   justify-content: inherit;
@@ -16,37 +16,37 @@
   width: 100%;
   z-index: 2;
   font-family: var(--font-mono);
-}
+} */
 
-.description a {
+/* .description a {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
 }
-
-.description p {
+ */
+/* .description p {
   position: relative;
   margin: 0;
   padding: 1rem;
   background-color: rgba(var(--callout-rgb), 0.5);
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
   border-radius: var(--border-radius);
-}
+} */
 
-.code {
+/* .code {
   font-weight: 700;
   font-family: var(--font-mono);
-}
+} */
 
-.grid {
+/* .grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(25%, auto));
   max-width: 100%;
   width: var(--max-width);
-}
+} */
 
-.card {
+/* .card {
   padding: 1rem 1.2rem;
   border-radius: var(--border-radius);
   background: rgba(var(--card-rgb), 0);
@@ -71,9 +71,9 @@
   line-height: 1.5;
   max-width: 30ch;
   text-wrap: balance;
-}
+} */
 
-.center {
+/* .center {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -107,9 +107,9 @@
 
 .logo {
   position: relative;
-}
+} */
 /* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
+/* @media (hover: hover) and (pointer: fine) {
   .card:hover {
     background: rgba(var(--card-rgb), 0.1);
     border: 1px solid rgba(var(--card-border-rgb), 0.15);
@@ -118,13 +118,13 @@
   .card:hover span {
     transform: translateX(4px);
   }
-}
+} */
 
-@media (prefers-reduced-motion) {
+/* @media (prefers-reduced-motion) {
   .card:hover span {
     transform: none;
   }
-}
+} */
 
 /* Mobile */
 @media (max-width: 700px) {
