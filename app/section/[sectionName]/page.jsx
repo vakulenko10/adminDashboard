@@ -1,4 +1,5 @@
 "use client"
+import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 const Page = ({ params }) => {
   const [contentItems, setContentItems] = useState([]);
@@ -39,7 +40,7 @@ const Page = ({ params }) => {
       <h1>{params.sectionName} Page</h1>
       <ul>
         {contentItems?.map((item) => (
-          <li key={item._id}>title{item.title} and description{item.description}</li>
+          <li key={item._id}>title{item.title} and description{item.description} <Link href={`http://localhost:3000/section/${params.sectionName}/${item._id}`}>fsgd</Link></li>
           // Adjust this based on the actual properties you want to display
         ))}
       </ul>
