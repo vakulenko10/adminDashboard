@@ -59,15 +59,14 @@ const FAQSItemSchema = new Schema(
         timestamps: true,
     }
 );
-const HelloItem = mongoose.models.HelloItem;
 
-const AboutMeItem = mongoose.models.AboutMeItem;
+const HelloItem = mongoose.models.HelloItem || mongoose.model('HelloItem', helloItemSchema);
+const AboutMeItem = mongoose.models.AboutMeItem || mongoose.model('AboutMeItem', aboutMeItemSchema);
+const MyPortfolioItem = mongoose.models.MyPortfolioItem || mongoose.model('MyPortfolioItem', myPortfolioItemSchema);
+const MyBlogItem = mongoose.models.MyBlogItem || mongoose.model('MyBlogItem', myBlogItemSchema);
+const FAQSItem = mongoose.models.FAQSItem || mongoose.model('FAQSItem', FAQSItemSchema);
 
-const MyPortfolioItem =  mongoose.models.MyPortfolioItem;
 
-const MyBlogItem = mongoose.models.MyBlogItem;
-
-const FAQSItem =  mongoose.models.FAQSItem;
 
 export { HelloItem, AboutMeItem, MyPortfolioItem, MyBlogItem, FAQSItem };
 //here I have to define some more schemas of content and then use them in my code

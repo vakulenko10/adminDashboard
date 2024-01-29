@@ -2,14 +2,14 @@
 import React, { useState, useEffect } from 'react';
 const Page = ({ params }) => {
   const [contentItems, setContentItems] = useState([]);
-// const sections = ['welcome', 'aboutMe', 'myPortfolio', 'myBlog', 'FAQS'];
+  const sections = ['welcome', 'aboutMe', 'myPortfolio', 'myBlog', 'FAQS'];
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // if (!sections.includes(params.sectionName)) {
-        //     console.log("there is no such directory on our website  ")
-        //     return;
-        //   }
+        if (!sections.includes(params.sectionName)) {
+            console.log("there is no such directory on our website  ")
+            return;
+          }
         const res = await fetch(`http://localhost:3000/api/fetchContentFromDB/${params.sectionName}`);
         
         if (!res.ok) {
@@ -26,11 +26,14 @@ const Page = ({ params }) => {
 
     fetchData();
   }, [params.sectionName]); // Fetch data whenever sectionName changes
-//   if (!sections.includes(params.sectionName)) {
-//     return(
-//         <div><h1>there is no such directory</h1></div>
-//     )
-//   }
+  if (!sections.includes(params.sectionName)) {
+    return(
+        <div>
+          <h1>404 </h1>
+          <h3>there is no such directory...</h3>
+        </div>
+    )
+  }
   return (
     <div>
       <h1>{params.sectionName} Page</h1>

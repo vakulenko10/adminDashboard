@@ -2,17 +2,16 @@
 import { NextResponse } from "next/server";
 import connectMongoDB from '@/libs/mongo_db';
 import { HelloItem, AboutMeItem, MyPortfolioItem, MyBlogItem, FAQSItem } from '@/models/models';
-
 export async function GET(req, { params }) {
 
 
   try {
     const sectionToModelMap = {
-      "welcome": HelloItem,
-      "aboutMe": AboutMeItem,
-      "myPortfolio": MyPortfolioItem,
-      "myBlog": MyBlogItem,
-      "FAQS": FAQSItem
+      'welcome': HelloItem,
+      'aboutMe': AboutMeItem,
+      'myPortfolio': MyPortfolioItem,
+      'myBlog': MyBlogItem,
+      'FAQS': FAQSItem
     };
     console.log("params.sectionName: ", params.sectionName)
     console.log('Starting GET method');
@@ -22,6 +21,7 @@ export async function GET(req, { params }) {
     console.log("Keys in sectionToModelMap:", Object.keys(sectionToModelMap));
     console.log("params:", params)
     const model = sectionToModelMap[params.sectionName];
+    console.log("sectionToModelMap[params.sectionName]", sectionToModelMap[params.sectionName])
     console.log("model:", model)
     if (!model) {
       return NextResponse.error({ message: 'Invalid sectionName' }, { status: 400 });
