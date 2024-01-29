@@ -40,10 +40,12 @@ const Page = ({ params }) => {
       <h1>{params.sectionName} Page</h1>
       <ul>
         {contentItems?.map((item) => (
-          <li key={item._id}>title{item.title} and description{item.description} <Link href={`http://localhost:3000/section/${params.sectionName}/${item._id}`}>fsgd</Link></li>
+          <li key={item._id}>title:{item.title} and description{item.description} <Link href={`http://localhost:3000/section/${params.sectionName}/${item._id}`}>fsgd</Link></li>
           // Adjust this based on the actual properties you want to display
         ))}
       </ul>
+      <Link href={`http://localhost:3000/section/${params.sectionName}/addNewItem`}>add item to that section</Link>
+      <button></button>
     </div>
   );
 };
