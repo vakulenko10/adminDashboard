@@ -2,6 +2,7 @@
 import { NextResponse } from "next/server";
 import connectMongoDB from '@/libs/mongo_db';
 import { HelloItem, AboutMeItem, MyPortfolioItem, MyBlogItem, FAQSItem } from '@/models/models';
+import mongoose from "mongoose";
 export const sectionToModelMap = {
       'welcome': HelloItem,
       'aboutMe': AboutMeItem,
@@ -84,5 +85,41 @@ export async function POST(request, { params }) {
   } catch (error) {
     console.error('Error in POST method:', error);
     return NextResponse.error({ message: 'Internal Server Error' }, { status: 500 });
+  }
+}
+
+export async function DELETE(request, { params }) {
+  try {
+    if (!request.url) {
+      return NextResponse.json({ message: "Invalid request" }, { status: 400 });
+    }
+
+    const url = new URL(request.url);
+    const id = url.searchParams.get("id");
+    console.log("id: ", id)
+    // Check if id is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return NextResponse.json({ message: "Invalid id format" }, { status: 400 });
+    }
+
+    await connectMongoDB();
+
+    const model = sectionToModelMap[params.sectionName];
+
+    if (!model) {
+      return NextResponse.error({ message: 'Invalid sectionName' }, { status: 400 });
+    }
+
+    const deletedItem = await model.findOneAndDelete({ _id: id });
+
+    // Check if the item was not found
+    if (!deletedItem) {
+      return NextResponse.json({ message: "Item not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ message: "Item deleted" }, { status: 200 });
+  } catch (error) {
+    console.error("Error deleting item:", error);
+    return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
   }
 }

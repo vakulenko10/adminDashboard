@@ -1,23 +1,29 @@
 import React, { useEffect, useState } from 'react';
 
-const DynamicForm = ({ sectionName }) => {
+const DynamicForm = ({ sectionName, initialData}) => {
   const [schema, setSchema] = useState([]);
   const [formData, setFormData] = useState({});
-
+  // const [successMessage, setSuccessMessage] = useState('');
+  console.log("initialData:", initialData)
+  console.log("formData:", formData)
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(`/api/fetchContentFromDB/${sectionName}`);
         const data = await response.json();
         setSchema(data.modelProperties.filter(property => !['_id', 'createdAt', 'updatedAt', '__v'].includes(property)));
+
+        if (initialData) {
+          setFormData(initialData);
+        }
       } catch (error) {
         console.error('Error fetching schema:', error);
       }
     };
 
     fetchData();
-  }, [sectionName]);
-
+  }, [sectionName, initialData]);
+  console.log("schema:", schema)
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -39,8 +45,10 @@ const DynamicForm = ({ sectionName }) => {
       });
 
       if (response.ok) {
-        console.log('Item created successfully');
-        // Optionally, you can redirect or perform other actions upon successful creation.
+        setFormData({});
+        window.location.href = `/section/${sectionName}`;
+        setSuccessMessage('Item created successfully');
+        
       } else {
         console.error('Failed to create item');
       }
@@ -50,21 +58,25 @@ const DynamicForm = ({ sectionName }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {schema.map((property) => (
-        <div key={property}>
-          <label htmlFor={property}>{property}</label>
-          <input
-            type="text"
-            id={property}
-            name={property}
-            value={formData[property] || ''}
-            onChange={handleInputChange}
-          />
-        </div>
-      ))}
-      <button type="submit">Create Item</button>
-    </form>
+    <>
+      {/* {successMessage && <div style={{ color: 'green', background: 'yellow' }}>{successMessage}</div>} */}
+      <form onSubmit={handleSubmit}>
+        {schema.map((property) => (
+          <div key={property}>
+            <label htmlFor={property}>{property}</label>
+            <input
+              type="text"
+              id={property}
+              name={property}
+              value={formData[property] || ''}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+        ))}
+        <button type="submit">submit</button>
+      </form>
+    </>
   );
 };
 

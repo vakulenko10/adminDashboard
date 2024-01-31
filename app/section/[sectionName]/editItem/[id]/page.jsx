@@ -1,11 +1,12 @@
 "use client"
+import DynamicForm from '@/app/components/DynamicForm';
 import React, { useEffect, useState } from 'react'
 
 const page = ({params}) => {
   const [contentItem, setContentItem] = useState([]);
   console.log("params:", params)
   useEffect(() => {
-    const fetchData = async () => {
+    const getContentById = async () => {
       try {
         // if (!sections.includes(params.sectionName)) {
         //     console.log("there is no such directory on our website  ")
@@ -25,11 +26,11 @@ const page = ({params}) => {
       }
     };
 
-    fetchData();
-  }, []); 
+    getContentById();
+  }, [params.sectionName]); 
   return (
     <div>
-        <h1>id:{params.id}</h1>
+        <DynamicForm sectionName={params.sectionName} initialData={contentItem}/>
     </div>
   )
 }
