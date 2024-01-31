@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
-const DynamicForm = ({ sectionName, initialData}) => {
+const DynamicForm = ({ sectionName, initialData }) => {
   const [schema, setSchema] = useState([]);
   const [formData, setFormData] = useState({});
-  // const [successMessage, setSuccessMessage] = useState('');
-  console.log("initialData:", initialData)
-  console.log("formData:", formData)
+  const [successMessage, setSuccessMessage] = useState('');
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(`/api/fetchContentFromDB/${sectionName}`);
         const data = await response.json();
         setSchema(data.modelProperties.filter(property => !['_id', 'createdAt', 'updatedAt', '__v'].includes(property)));
-
+        
         if (initialData) {
           setFormData(initialData);
+          console.log('formData:', formData)
         }
       } catch (error) {
         console.error('Error fetching schema:', error);
@@ -23,7 +23,7 @@ const DynamicForm = ({ sectionName, initialData}) => {
 
     fetchData();
   }, [sectionName, initialData]);
-  console.log("schema:", schema)
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -36,8 +36,14 @@ const DynamicForm = ({ sectionName, initialData}) => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`/api/fetchContentFromDB/${sectionName}`, {
-        method: 'POST',
+      const url = initialData
+        ? `/api/fetchContentFromDB/${sectionName}/${initialData._id}`
+        : `/api/fetchContentFromDB/${sectionName}`;
+
+      const method = initialData ? 'PUT' : 'POST';
+
+      const response = await fetch(url, {
+        method: method,
         headers: {
           'Content-Type': 'application/json',
         },
@@ -46,20 +52,22 @@ const DynamicForm = ({ sectionName, initialData}) => {
 
       if (response.ok) {
         setFormData({});
-        window.location.href = `/section/${sectionName}`;
-        setSuccessMessage('Item created successfully');
-        
+        setSuccessMessage(initialData ? 'Item updated successfully' : 'Item created successfully');
+        setTimeout(() => {
+          setSuccessMessage(null);
+          window.location.href = `/section/${sectionName}`;
+        }, 5000);
       } else {
-        console.error('Failed to create item');
+        initialData?console.error('Failed to update item'):console.error('Failed to create item');
       }
     } catch (error) {
-      console.error('Error creating item:', error);
+      initialData?console.error('Error updating item:', error):console.error('Error creating item:', error);
     }
   };
 
   return (
     <>
-      {/* {successMessage && <div style={{ color: 'green', background: 'yellow' }}>{successMessage}</div>} */}
+      {successMessage && <div style={{ color: 'green', background: 'yellow' }}>{successMessage}</div>}
       <form onSubmit={handleSubmit}>
         {schema.map((property) => (
           <div key={property}>
@@ -74,7 +82,7 @@ const DynamicForm = ({ sectionName, initialData}) => {
             />
           </div>
         ))}
-        <button type="submit">submit</button>
+        <button type="submit">{initialData ? 'Update' : 'Create'}</button>
       </form>
     </>
   );

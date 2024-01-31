@@ -12,6 +12,7 @@
 // } 
 import { NextResponse } from "next/server";
 import connectMongoDB from '@/libs/mongo_db';
+import mongoose from "mongoose";
 import { HelloItem, AboutMeItem, MyPortfolioItem, MyBlogItem, FAQSItem } from '@/models/models';
 import { sectionToModelMap, getModelProperties} from "../route";
 
@@ -50,9 +51,10 @@ export async function GET(req, { params }) {
 
 export async function PUT(request, { params }) {
     try {
+      const propertiesToExclude = ["_id", "createdAt", "updatedAt", "__v"];
       const { sectionName, id } = params;
-      const { body } = await request.json();
-  
+      const body  = await request.json();
+      // console.log("request.json()", await request.json())
       console.log("sectionName:", sectionName);
       console.log("id:", id);
       console.log("Received data:", body);
@@ -68,15 +70,15 @@ export async function PUT(request, { params }) {
       }
   
       // Get the valid properties from the model schema
-      const validProperties = Object.keys(model.schema.paths);
-  
+      //const validProperties = Object.keys(model.schema.paths);
+      const modelProperties = getModelProperties(sectionName);
       // Extract only the valid properties from the request body
       const filteredData = {};
       Object.keys(body).forEach((key) => {
-        if (validProperties.includes(key)) {
-          filteredData[key] = body[key];
-        }
-      });
+      if (modelProperties.includes(key) && !(propertiesToExclude.includes(key))) {
+        filteredData[key] = body[key];
+      }
+    });
   
       // Update the document with the filtered data
       const updatedContentItem = await model.findByIdAndUpdate(id, filteredData, { new: true });

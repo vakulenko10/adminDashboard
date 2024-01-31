@@ -49,7 +49,7 @@ export async function POST(request, { params }) {
     const { sectionName } = params;
     console.log("sectionName:", sectionName);
     const body = await request.json();
-
+    
     console.log("Received data:", body);
 
     console.log('Starting POST method');
