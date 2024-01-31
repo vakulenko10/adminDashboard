@@ -1,4 +1,5 @@
 "use client"
+import GetImagesFromFolder from '@/app/components/GetImagesFromCloudinary';
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 
@@ -98,6 +99,7 @@ const Page = ({ params }) => {
       <button>
       <Link href={`http://localhost:3000/section/${params.sectionName}/addNewItem`}>add item to that section</Link>
       </button>
+      <GetImagesFromFolder sectionName={params.sectionName}/>
     </div>
   );
 };
