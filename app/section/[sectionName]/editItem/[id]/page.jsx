@@ -1,7 +1,9 @@
 "use client"
+import Container from '@/app/components/Container';
+import '../../../../styles/main.scss'
 import DynamicForm from '@/app/components/DynamicForm';
+import GetImagesFromFolder from '@/app/components/GetImagesFromCloudinary';
 import React, { useEffect, useState } from 'react'
-
 const page = ({params}) => {
   const [contentItem, setContentItem] = useState([]);
   console.log("params:", params)
@@ -29,8 +31,11 @@ const page = ({params}) => {
     getContentById();
   }, [params.sectionName]); 
   return (
-    <div>
+    <div className='page'>
+      <Container >
         <DynamicForm sectionName={params.sectionName} initialData={contentItem}/>
+        <GetImagesFromFolder sectionName={params.sectionName}/>
+      </Container>
     </div>
   )
 }

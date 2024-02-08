@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import '../styles/dynamicform.scss'
 
 const DynamicForm = ({ sectionName, initialData }) => {
   const [schema, setSchema] = useState([]);
   const [formData, setFormData] = useState({});
   const [successMessage, setSuccessMessage] = useState('');
-
+  // const [itemImageURL, setItemImageURL] = useState(initialData.imageURL)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -31,7 +32,7 @@ const DynamicForm = ({ sectionName, initialData }) => {
       [name]: value,
     }));
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -67,21 +68,24 @@ const DynamicForm = ({ sectionName, initialData }) => {
 
   return (
     <>
-      {successMessage && <div style={{ color: 'green', background: 'yellow' }}>{successMessage}</div>}
+      {/* {successMessage && <div style={{ color: 'green', background: 'yellow' }}>{successMessage}</div>} */}
       <form onSubmit={handleSubmit}>
         {schema.map((property) => (
-          <div key={property}>
-            <label htmlFor={property}>{property}</label>
-            <input
+          <div key={property} className='schema_item'>
+            <label htmlFor={property} className='title'>{property}</label>
+            <textarea
               type="text"
               id={property}
               name={property}
               value={formData[property] || ''}
               onChange={handleInputChange}
               required
-            />
+              className='text-area'
+            ></textarea>
           </div>
+          
         ))}
+        {initialData?.imageURL?<img style={{width: "100px"}} src={initialData.imageURL} />:<>nothing</>}
         <button type="submit">{initialData ? 'Update' : 'Create'}</button>
       </form>
     </>

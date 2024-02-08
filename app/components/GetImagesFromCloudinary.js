@@ -1,4 +1,5 @@
 "use client"
+import "../styles/GetImagesFromCloudinary.scss"
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { fetchPhotos } from '@/libs/GetCloudinary';
@@ -24,12 +25,18 @@ const GetImagesFromFolder = ({sectionName}) => {
         return (
             <div className={`imagesFolderSection ${sectionName}`}>
                 <h1>images folder name on cloudinary:"{sectionName}" </h1>
+                <ul>
                 {photos.map((photo) => (
-                        <div key={photo.public_id} className='image_item' >
-                            <img key={photo.public_id} id={photo.public_id} src={photo.url} alt={photo.original_filename} style={{width: "300px", height: "auto"}}/>
-                        </div>
+                        <li key={photo.public_id} className='image_item' >
+                            <a href={photo.url}>
+                            <figure>
+                            <img key={photo.public_id} id={photo.public_id} src={photo.url} alt={photo.original_filename}/>
+                            </figure>
+                            </a>
+                        </li>
                     
                     ))}
+                </ul>
             </div>
         )
 }

@@ -1,0 +1,1 @@
+export const sectionsLinks = ['welcome', 'aboutMe', 'myPortfolio', 'myBlog', 'FAQS'];

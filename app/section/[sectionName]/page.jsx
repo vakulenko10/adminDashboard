@@ -1,8 +1,10 @@
 "use client"
+import Container from "@/app/components/Container";
+import "../../styles/sectionPage.scss";
 import GetImagesFromFolder from '@/app/components/GetImagesFromCloudinary';
+import SectionItem from '@/app/components/SectionItem';
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
-
 const Page = ({ params }) => {
   const [contentItems, setContentItems] = useState([]);
   const [schema, setSchema] = useState({});
@@ -68,39 +70,28 @@ const Page = ({ params }) => {
   }
 
   return (
-    <div>
+    <>
+
+    <Container>
       <h1>{params.sectionName} Page</h1>
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <div>
-          {contentItems?.map((item) => (
-            <div key={item._id} style={{ border: '1px solid black', margin: '10px', padding: '10px' }}>
-              <h3>ID: {item._id}</h3>
-              {Object.entries(item).map(([property, value]) => (
-                // Exclude specific properties you don't want to display
-                !['_id'].includes(property) && (
-                  <div key={property}>
-                    <h4>{property}:</h4>
-                    <p>
-                      {value}
-                    </p>
-                  </div>
-                )
-              ))}
-              <button onClick={() => handleDelete(item._id)}>Delete</button>
-              <Link href={`http://localhost:3000/section/${params.sectionName}/editItem/${item._id}`}>
-                  <button>Edit</button>
-              </Link>
-            </div>
+        <>
+         <button id="addNewItemBtn">
+          <Link href={`http://localhost:3000/section/${params.sectionName}/addNewItem`}>add item to that section</Link>
+         </button>
+        <div className='sectionItems'>
+          {contentItems?.map((item, index) => (
+            <SectionItem key={index} item={item} sectionName={params.sectionName} handleDelete={handleDelete}/>
           ))}
         </div>
+        </>
       )}
-      <button>
-      <Link href={`http://localhost:3000/section/${params.sectionName}/addNewItem`}>add item to that section</Link>
-      </button>
-      <GetImagesFromFolder sectionName={params.sectionName}/>
-    </div>
+     
+      
+    </Container>
+    </>
   );
 };
 
