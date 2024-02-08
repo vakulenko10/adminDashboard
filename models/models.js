@@ -6,7 +6,7 @@ const helloItemSchema = new Schema(
         description: String,
         uaWelcome: String,
         uaDescription: String,
-        imageID: String,
+        imageURL: String,
     },
     {
         timestamps: true,
@@ -18,7 +18,7 @@ const aboutMeItemSchema = new Schema(
         description: String,
         uaTitle: String,
         uaDescription: String,
-        imageID: String,
+        imageURL: String,
         imageDate: String
     },
     {
@@ -30,7 +30,7 @@ const myPortfolioItemSchema = new Schema(
     {
         description: String,
         uaDescription: String,
-        imageID: String
+        imageURL: String
     },
     {
         timestamps: true,
@@ -42,7 +42,7 @@ const myBlogItemSchema = new Schema(
         description: String,
         uaTitle: String,
         uaDescription: String,
-        imageID: String
+        imageURL: String
     },
     {
         timestamps: true,
@@ -59,6 +59,7 @@ const FAQSItemSchema = new Schema(
         timestamps: true,
     }
 );
+
 
 const HelloItem = mongoose.models.HelloItem || mongoose.model('HelloItem', helloItemSchema);
 const AboutMeItem = mongoose.models.AboutMeItem || mongoose.model('AboutMeItem', aboutMeItemSchema);
