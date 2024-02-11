@@ -1,6 +1,5 @@
 "use client"
 import Container from '@/app/components/Container';
-import '../../../../styles/main.scss'
 import DynamicForm from '@/app/components/DynamicForm';
 import GetImagesFromFolder from '@/app/components/GetImagesFromCloudinary';
 import React, { useEffect, useState } from 'react'

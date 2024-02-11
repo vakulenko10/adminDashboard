@@ -1,6 +1,5 @@
 "use client"
 import Container from "@/app/components/Container";
-import "../../styles/sectionPage.scss";
 import GetImagesFromFolder from '@/app/components/GetImagesFromCloudinary';
 import SectionItem from '@/app/components/SectionItem';
 import Link from 'next/link';
@@ -70,18 +69,18 @@ const Page = ({ params }) => {
   }
 
   return (
-    <>
+    <main className="pt-[100px]">
 
-    <Container>
+    <Container className={`flex flex-col justify-center items-center px-2 md:px-0 `}>
       <h1>{params.sectionName} Page</h1>
       {loading ? (
         <p>Loading...</p>
       ) : (
         <>
-         <button id="addNewItemBtn">
+         <button id="addNewItemBtn" className="p-3 mb-3 rounded text-white bg-[#39c420] hover:bg-[#39c420af] hover:text-[#39c420af]rounded">
           <Link href={`http://localhost:3000/section/${params.sectionName}/addNewItem`}>add item to that section</Link>
          </button>
-        <div className='sectionItems'>
+        <div className='sectionItems flex flex-col justify-center items-center gap-[10px] w-full overflow-hidden md:flex md:flex-row md:flex-wrap'>
           {contentItems?.map((item, index) => (
             <SectionItem key={index} item={item} sectionName={params.sectionName} handleDelete={handleDelete}/>
           ))}
@@ -91,7 +90,7 @@ const Page = ({ params }) => {
      
       
     </Container>
-    </>
+    </main>
   );
 };
 
