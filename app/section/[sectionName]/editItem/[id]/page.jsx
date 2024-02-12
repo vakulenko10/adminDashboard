@@ -2,6 +2,7 @@
 import Container from '@/app/components/Container';
 import DynamicForm from '@/app/components/DynamicForm';
 import GetImagesFromFolder from '@/app/components/GetImagesFromCloudinary';
+import { ImageProvider } from '@/app/components/ImageURLContext';
 import React, { useEffect, useState } from 'react'
 const page = ({params}) => {
   const [contentItem, setContentItem] = useState([]);
@@ -30,11 +31,15 @@ const page = ({params}) => {
     getContentById();
   }, [params.sectionName]); 
   return (
+    
     <div className='page'>
-      <Container >
+      <ImageProvider>
+      <Container className='flex flex-col justify-center items-center md:flex md:flex-row md:flex-wrap md:justify-around'>
+
         <DynamicForm sectionName={params.sectionName} initialData={contentItem}/>
         <GetImagesFromFolder sectionName={params.sectionName}/>
       </Container>
+      </ImageProvider>
     </div>
   )
 }

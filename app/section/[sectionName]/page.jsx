@@ -1,6 +1,8 @@
 "use client"
+import { useSession } from 'next-auth/react';
+import { redirect } from 'next/navigation';
 import Container from "@/app/components/Container";
-import GetImagesFromFolder from '@/app/components/GetImagesFromCloudinary';
+// import GetImagesFromFolder from '@/app/components/GetImagesFromCloudinary';
 import SectionItem from '@/app/components/SectionItem';
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
@@ -9,7 +11,11 @@ const Page = ({ params }) => {
   const [schema, setSchema] = useState({});
   const [loading, setLoading] = useState(true);
   const sections = ['welcome', 'aboutMe', 'myPortfolio', 'myBlog', 'FAQS'];
-
+  const {data: session} = useSession(
+    {required: true,
+  onUnauthenticated(){
+    redirect(`/api/auth/signin?callbackUrl=/section/${params.sectionName}`)
+  }})
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -69,7 +75,7 @@ const Page = ({ params }) => {
   }
 
   return (
-    <main className="pt-[100px]">
+    <main className="pb-[20px] pt-[100px]">
 
     <Container className={`flex flex-col justify-center items-center px-2 md:px-0 `}>
       <h1>{params.sectionName} Page</h1>
@@ -80,7 +86,7 @@ const Page = ({ params }) => {
          <button id="addNewItemBtn" className="p-3 mb-3 rounded text-white bg-[#39c420] hover:bg-[#39c420af] hover:text-[#39c420af]rounded">
           <Link href={`http://localhost:3000/section/${params.sectionName}/addNewItem`}>add item to that section</Link>
          </button>
-        <div className='sectionItems flex flex-col justify-center items-center gap-[10px] w-full overflow-hidden md:flex md:flex-row md:flex-wrap'>
+        <div className='sectionItems flex flex-col justify-center items-center gap-[10px] w-full overflow-hidden md:grid md:grid-cols-2 md:gap-4 md:justify-center md:items-center md:w-full lg:grid lg:grid-cols-3 lg:gap-4 lg:justify-center  lg:w-full'>
           {contentItems?.map((item, index) => (
             <SectionItem key={index} item={item} sectionName={params.sectionName} handleDelete={handleDelete}/>
           ))}

@@ -1,1 +1,1 @@
-export const sectionsLinks = ['welcome', 'aboutMe', 'myPortfolio', 'myBlog', 'FAQS'];
+export var sectionsLinks = ['welcome', 'aboutMe', 'myPortfolio', 'myBlog', 'FAQS'];

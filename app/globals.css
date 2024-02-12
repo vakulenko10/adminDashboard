@@ -139,6 +139,23 @@ h5, h6{
   display: flex;
   visibility: visible;
 }
+.imageFigure
+.imageFigure .copyImageUrl{
+  display: none;
+}
+.imageFigure :hover .copyIMageUrl{
+  display: block;
+  visibility: visible;
+  position: absolute;
+  
+}
+.carousel h5{
+  display: none;
+  transition: .8s linear;
+}
+.carousel:hover h5{
+  display: block;
+}
 @media screen and (min-width: 768px){
   h1{
     font-size: 30px;
