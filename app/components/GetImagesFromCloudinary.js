@@ -40,8 +40,5 @@ const GetImagesFromFolder = ({sectionName}) => {
             </div>
         )
 }
-// const Carousel = (photos) =>{
-//     const 
-// }
 
 export default GetImagesFromFolder

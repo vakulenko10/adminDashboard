@@ -9,8 +9,12 @@
   box-sizing: border-box;
   
 }
+/* body{
+  min-height: 100vh;
+} */
 .page{
   padding-top: 100px;
+  min-height: 80vh;
 }
 h1{
   font-size: 36px;
@@ -39,6 +43,10 @@ h3, h4{
 }
 h5, h6{
   font-family: 'Dancing Script', cursive;
+}
+p{
+  font-family: 'Montserrat', sans-serif;
+
 }
 .burger {
   position: relative;

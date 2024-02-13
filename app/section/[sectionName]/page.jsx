@@ -6,6 +6,7 @@ import Container from "@/app/components/Container";
 import SectionItem from '@/app/components/SectionItem';
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
+import Loader from '@/app/components/Loader';
 const Page = ({ params }) => {
   const [contentItems, setContentItems] = useState([]);
   const [schema, setSchema] = useState({});
@@ -67,7 +68,7 @@ const Page = ({ params }) => {
 
   if (!sections.includes(params.sectionName)) {
     return (
-      <div>
+      <div className='page'>
         <h1>404 </h1>
         <h3>there is no such directory...</h3>
       </div>
@@ -75,12 +76,12 @@ const Page = ({ params }) => {
   }
 
   return (
-    <main className="pb-[20px] pt-[100px]">
+    <main className="page pb-[20px] pt-[100px]">
 
-    <Container className={`flex flex-col justify-center items-center px-2 md:px-0 `}>
+    <Container className={`px-3 flex flex-col justify-center items-center md:px-0 `}>
       <h1>{params.sectionName} Page</h1>
       {loading ? (
-        <p>Loading...</p>
+        <Loader />
       ) : (
         <>
          <button id="addNewItemBtn" className="p-3 mb-3 rounded text-white bg-[#39c420] hover:bg-[#39c420af] hover:text-[#39c420af]rounded">
