@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { sectionsLinks } from './mainvars'
 import Container from './Container'
-import HeaderBurger from './HeaderBurger'
+import HeaderBurger from './headerBurger'
 import LinksContainer from './LinksContainer'
 
 const Header = () => {
