@@ -16,7 +16,7 @@ const SectionItem = ({item, sectionName, handleDelete}) => {
       >
         <HiMiniTrash size={30} fill='white' /> 
       </button>
-      <Link className="flex items-center justify-center w-full select-none rounded-lg bg-blue-gray-900/10 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" href={{pathname:`http://localhost:3000/section/${sectionName}/editItem/${item._id}`, query: {sectionName, itemId: item._id, ...item}}}>
+      <Link className="flex items-center justify-center w-full select-none rounded-lg bg-blue-gray-900/10 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" href={{pathname:`/section/${sectionName}/editItem/${item._id}`, query: {sectionName, itemId: item._id, ...item}}}>
                   <button><AiFillEdit size ={30} fill='white'/></button>
       </Link>
     </div>

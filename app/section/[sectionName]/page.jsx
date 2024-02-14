@@ -24,7 +24,7 @@ const Page = ({ params }) => {
           console.log("there is no such directory on our website  ")
           return;
         }
-        const res = await fetch(`http://localhost:3000/api/fetchContentFromDB/${params.sectionName}`);
+        const res = await fetch(`/api/fetchContentFromDB/${params.sectionName}`);
 
         if (!res.ok) {
           throw new Error(`Failed to fetch content: ${res.status} ${res.statusText}`);
@@ -51,7 +51,7 @@ const Page = ({ params }) => {
       if (!userConfirmed) {
         return; // If the user cancels the action, do nothing
       }
-      const res = await fetch(`http://localhost:3000/api/fetchContentFromDB/${params.sectionName}?id=${id}`, {
+      const res = await fetch(`/api/fetchContentFromDB/${params.sectionName}?id=${id}`, {
         method: 'DELETE',
       });
 
@@ -85,7 +85,7 @@ const Page = ({ params }) => {
       ) : (
         <>
          <button id="addNewItemBtn" className="p-3 mb-3 rounded text-white bg-[#39c420] hover:bg-[#39c420af] hover:text-[#39c420af]rounded">
-          <Link href={`http://localhost:3000/section/${params.sectionName}/addNewItem`}>add item to that section</Link>
+          <Link href={`/section/${params.sectionName}/addNewItem`}>add item to that section</Link>
          </button>
         <div className='sectionItems flex flex-col justify-center items-center gap-[10px] w-full overflow-hidden md:grid md:grid-cols-2 md:gap-4 md:justify-center md:items-center md:w-full lg:grid lg:grid-cols-3 lg:gap-4 lg:justify-center  lg:w-full'>
           {contentItems?.map((item, index) => (

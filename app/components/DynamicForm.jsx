@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useImage } from './ImageURLContext';
 
+
 const DynamicForm = ({ sectionName, initialData}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [schema, setSchema] = useState([]);

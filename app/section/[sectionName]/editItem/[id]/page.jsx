@@ -14,7 +14,7 @@ const page = ({params}) => {
         //     console.log("there is no such directory on our website  ")
         //     return;
         //   }
-        const res = await fetch(`http://localhost:3000/api/fetchContentFromDB/${params.sectionName}/${params.id}`);
+        const res = await fetch(`/api/fetchContentFromDB/${params.sectionName}/${params.id}`);
         
         if (!res.ok) {
           throw new Error(`Failed to fetch content: ${res.status} ${res.statusText}`);
