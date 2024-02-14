@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useImage } from './ImageURLContext';
+import Image from 'next/image';
 
 const DynamicForm = ({ sectionName, initialData}) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -106,7 +107,7 @@ const DynamicForm = ({ sectionName, initialData}) => {
           </div>
           
         ))}
-        {formData?.imageURL?<img style={{width: "100px"}} src={formData.imageURL} />:<>nothing</>}
+        {formData?.imageURL?<Image style={{width: "100px"}} src={formData.imageURL} />:<>nothing</>}
         <button type="submit" className="flex justify-center items-center text-center w-full [background:linear-gradient(144deg,#af40ff,#5b42f3_50%,#00ddeb)] text-white px-4 py-2 font-bold rounded-md hover:opacity-80">{initialData ? 'Update' : 'Create'}</button>
           
       </div>

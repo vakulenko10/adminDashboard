@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useImage } from './ImageURLContext';
 import { FaArrowCircleLeft } from "react-icons/fa";
 import { FaArrowCircleRight } from "react-icons/fa";
+import Image from 'next/image';
 const Carousel = ({photos}) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const {setImageURLFromContext} = useImage();
@@ -18,7 +19,7 @@ const Carousel = ({photos}) => {
     <>
     <div className='relative carousel overflow-hidden box-border flex max-w-full md:w-[400px] md:h-[500px] '>
         {photos?(<div className='w-full flex flex-col justify-center items-center '>
-            <img src={photos[activeIndex].url} alt={photos[activeIndex].original_filename} onClick={()=>setImageURLFromContext(photos[activeIndex].url)} className='object-contain w-full h-5/6'/>
+            <Image src={photos[activeIndex].url} alt={photos[activeIndex].original_filename} onClick={()=>setImageURLFromContext(photos[activeIndex].url)} className='object-contain w-full h-5/6'/>
             <h5 className='absolute text-white'>click on the image to assign it to the item</h5>
             <div className='button-container absolute bottom-10 flex justify-between w-full'>
             <button id="previousImage" onClick={handlePrevious}><FaArrowCircleLeft size={60} fill='#fff' /></button>
