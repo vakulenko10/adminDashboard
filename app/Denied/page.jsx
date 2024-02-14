@@ -1,6 +1,6 @@
 import React from 'react'
 
-const page = () => {
+const Page = () => {
   return (
     <main className='pt-[100px]'>
         <h1>access denied cuz you're not autheticated as the admin</h1>
@@ -8,4 +8,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
