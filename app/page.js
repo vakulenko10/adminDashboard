@@ -14,7 +14,7 @@ export default function Home() {
         <h1>Hi there!</h1>
         <p>That is admin dashboard site, you have to login to be able to edit your personal website...</p>
         <p>Login button is in the navbar. Remember you wont be able to change anything on your main website through that dashboard unless you are logged in as the admin</p>
-        <p>The code here is wtitten that way, so that admin can create new database schemas, so that updating the website's items info is really eas</p>
+        <p>The code here is wtitten that way, so that admin can create new database schemas, so that updating the websites items info is really eas</p>
         <p>You just dont have to dive deep into the code, you just have to create new mongoDB model. If you want that model to become the base for displayed section on your main website, you also have to update the list of main website's sections in the mainVars, and also you should update the sectionToModelMap so that each new section would have good updating functionality </p>
         <h1>It is better to log out from admin session each time you visited that page.</h1>
         <p>Also it is a lot better to have stable internet connection, doing so would give you an opportunity to make sure that everything went right while editing</p>
