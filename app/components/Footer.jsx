@@ -8,11 +8,14 @@ const Footer = () => {
     <footer className="relative bg-slate-300 py-20 pb-6">
         <Container className={`flex`}>
             <div className='developerInfo w-full flex flex-col justify-center items-center'>
+                <Link href='https://www.instagram.com'>instagram</Link>
+            </div>
+            {/* <div className='developerInfo w-full flex flex-col justify-center items-center'>
                 <Link href='https://www.instagram.com/vakulenko_10'>instagram</Link>
             </div>
             <div className='info w-full flex flex-col justify-center items-center'>
                 <Link href='https://www.instagram.com/black_bansheeee/'>instagram</Link>
-            </div>
+            </div> */}
         </Container>
     {/* <div className="container mx-auto px-4">
         <div className="flex flex-wrap text-left lg:text-left">
