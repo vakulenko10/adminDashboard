@@ -13,6 +13,7 @@ const GetImagesFromFolder = ({sectionName}) => {
             try {   
             const photosData = await fetchPhotos(sectionName);
             setPhotos(photosData);
+            console.log(photosData)
             setIsLoading(false);
             } catch (error) {
             console.error('Error fetching data:', error);
