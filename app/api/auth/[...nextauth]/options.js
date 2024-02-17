@@ -19,7 +19,7 @@ export const options = {
                 }
                 else if(profile?.email !== process.env.ADMINEMAIL){
                     console.log("Access Denied: Only admin users allowed to sign into admin dashboard.");
-                    redirect('../../../AdminLoginDenied')
+                    redirect('/')
                 }
             },
             clientId: process.env.GitHub_ID,
