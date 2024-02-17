@@ -4,7 +4,7 @@ import DynamicForm from '@/app/components/DynamicForm';
 import GetImagesFromFolder from '@/app/components/GetImagesFromCloudinary';
 import { ImageProvider } from '@/app/components/ImageURLContext';
 import React, { useEffect, useState } from 'react'
-const page = ({params}) => {
+const Page = ({params}) => {
   const [contentItem, setContentItem] = useState([]);
   console.log("params:", params)
   useEffect(() => {
@@ -44,4 +44,4 @@ const page = ({params}) => {
   )
 }
 
-export default page
+export default Page

@@ -4,7 +4,7 @@ import DynamicForm from '@/app/components/DynamicForm'
 import GetImagesFromFolder from '@/app/components/GetImagesFromCloudinary'
 import { ImageProvider } from '@/app/components/ImageURLContext'
 import React from 'react'
-const page = ({params}) => {
+const Page = ({params}) => {
   console.log("params:", params)
   return (
     <div className='page'>
@@ -21,4 +21,4 @@ const page = ({params}) => {
   )
 }
 
-export default page
+export default Page
