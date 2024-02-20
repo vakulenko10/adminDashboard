@@ -2,8 +2,8 @@ import mongoose, {Schema} from "mongoose";
 
 const helloItemSchema = new Schema(
     {
-        welcome: String,
-        description: String,
+        enWelcome: String,
+        enDescription: String,
         uaWelcome: String,
         uaDescription: String,
         imageURL: String,
@@ -14,8 +14,8 @@ const helloItemSchema = new Schema(
 );
 const aboutMeItemSchema = new Schema(
     {
-        title: String,
-        description: String,
+        enTitle: String,
+        enDescription: String,
         uaTitle: String,
         uaDescription: String,
         imageURL: String,
@@ -28,7 +28,7 @@ const aboutMeItemSchema = new Schema(
 
 const myPortfolioItemSchema = new Schema(
     {
-        description: String,
+        enDescription: String,
         uaDescription: String,
         imageURL: String
     },
@@ -38,8 +38,8 @@ const myPortfolioItemSchema = new Schema(
 );
 const myBlogItemSchema = new Schema(
     {
-        title: String,
-        description: String,
+        enTitle: String,
+        enDescription: String,
         uaTitle: String,
         uaDescription: String,
         imageURL: String
@@ -50,8 +50,8 @@ const myBlogItemSchema = new Schema(
 );
 const FAQSItemSchema = new Schema(
     {
-        question: String,
-        answer: String,
+        enQuestion: String,
+        enAnswer: String,
         uaQuestion: String,
         uaAnswer: String
     },
